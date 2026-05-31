@@ -16,7 +16,9 @@ dataclass.
 
 from __future__ import annotations
 
+import json
 import logging
+import os
 import random
 import time
 from dataclasses import dataclass, field
@@ -200,9 +202,16 @@ class SheetsRepository:
         """Authenticate and open the configured worksheet (idempotent)."""
         if self._worksheet is not None:
             return
-        creds = Credentials.from_service_account_file(
-            str(self._settings.service_account_path), scopes=SCOPES
-        )
+        raw = os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+        if raw:
+            info = json.loads(raw)
+            creds = Credentials.from_service_account_info(info, scopes=SCOPES)
+            logger.info("Loaded service account from GOOGLE_SERVICE_ACCOUNT_JSON env var")
+        else:
+            creds = Credentials.from_service_account_file(
+                str(self._settings.service_account_path), scopes=SCOPES
+            )
+            logger.info("Loaded service account from file")
         client = gspread.authorize(creds)
         spreadsheet = self._with_retry(
             "open spreadsheet", lambda: client.open_by_key(self._settings.sheet_id)
