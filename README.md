@@ -1,4 +1,4 @@
-# 📚 APPSC Group‑1 Spaced‑Repetition Telegram Bot
+# APPSC Group‑1 Spaced‑Repetition Telegram Bot
 
 A production‑ready Telegram bot that delivers **SM‑2 (Anki‑style) spaced
 repetition** for APPSC Group‑1 exam prep. Your **Google Sheet is the
@@ -8,7 +8,7 @@ with the SM‑2 algorithm.
 
 ---
 
-## ✨ Features
+##  Features
 
 - **SM‑2 scheduling** with `Again / Hard / Good / Easy` grading.
 - **Daily 07:00 IST delivery** of due cards, one message at a time (throttled).
