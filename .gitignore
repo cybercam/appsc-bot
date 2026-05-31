@@ -1,0 +1,18 @@
+# Secrets — never commit these
+.env
+service_account.json
+chat_ids.json
+
+# Logs
+logs/*.log
+logs/*.log.*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pylibs/
+.pytest_cache/
+*.egg-info/
+.DS_Store
